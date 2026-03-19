@@ -109,7 +109,7 @@ export default function Hero() {
 
               {/* The image */}
               <img
-                src="/arcco-agents.png"
+                src="/pdf2.png"
                 alt="Arcco Agents — Automação e Inteligência Artificial"
                 className="w-full h-auto block opacity-75"
                 draggable={false}
