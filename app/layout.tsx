@@ -16,7 +16,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: '/icon.png',
+    icon: '/icon.png?v=4',
+    shortcut: '/icon.png?v=4',
+    apple: '/icon.png?v=4',
   },
   twitter: {
     card: 'summary_large_image',
