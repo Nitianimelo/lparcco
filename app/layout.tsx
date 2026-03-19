@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     type: 'website',
   },
+  icons: {
+    icon: '/icon.png',
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Arcco - IA Plug-and-Play para PMEs',
