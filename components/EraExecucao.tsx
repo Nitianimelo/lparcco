@@ -149,7 +149,7 @@ export default function EraExecucao() {
                                 {/* Prompt banner */}
                                 {row.prompt && (
                                     <div className="px-5 py-3 bg-white/3 border-b border-white/5">
-                                        <p className="text-xs sm:text-sm text-gray-400 font-medium italic">"{row.prompt.replace('Você pede: "', '').replace('"', '')}"</p>
+                                        <p className="text-xs sm:text-sm text-gray-400 font-medium italic">&quot;{row.prompt.replace('Você pede: "', '').replace('"', '')}&quot;</p>
                                     </div>
                                 )}
 
@@ -186,7 +186,7 @@ export default function EraExecucao() {
                     <p className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-3">O que faz a Arcco ser diferente</p>
                     <h3 className="text-3xl sm:text-4xl font-bold mb-4">O Nosso Motor de Execução</h3>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
-                        Não conectamos a sua empresa a um simples "modelo de linguagem".
+                        Não conectamos a sua empresa a um simples &quot;modelo de linguagem&quot;.
                         Damos um <span className="text-foreground font-medium">computador virtual hiper-rápido para a sua IA trabalhar</span>.
                     </p>
                 </motion.div>
