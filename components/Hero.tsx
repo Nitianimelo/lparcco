@@ -93,15 +93,15 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT: Arcco Agents image — 3D "standing up" effect ── */}
-          <div style={{ perspective: '1200px' }} className="relative lg:w-1/2 w-full max-w-[51rem] mx-auto lg:mx-0">
+          {/* ── RIGHT: Arcco Agents image — 3D effect ── */}
+          <div style={{ perspective: '1200px' }} className="relative lg:w-1/2 w-full max-w-[51rem] mx-auto lg:mx-0 pl-10">
             <motion.div
-              initial={{ opacity: 0, y: 60, rotateX: 25 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 8 }}
+              initial={{ opacity: 0, x: 50, rotateY: -30, rotateX: 15, rotateZ: -2 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: -20, rotateX: 10, rotateZ: -1 }}
               viewport={{ once: true }}
-              whileHover={{ rotateX: 2, scale: 1.02 }}
+              whileHover={{ rotateY: -10, rotateX: 5, rotateZ: 0, scale: 1.02 }}
               transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
-              style={{ transformStyle: 'preserve-3d', transformOrigin: 'bottom center' }}
+              style={{ transformStyle: 'preserve-3d', transformOrigin: 'center center' }}
               className="relative rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
             >
               {/* Gloss overlay */}
