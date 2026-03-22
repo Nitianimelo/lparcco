@@ -3,7 +3,7 @@ import Hero from '@/components/Hero'
 import AILogos from '@/components/AILogos'
 import EraExecucao from '@/components/EraExecucao'
 import Economia from '@/components/Economia'
-import Posicionamento from '@/components/Posicionamento'
+import CloudComputerAgent from '@/components/CloudComputerAgent'
 import Planos from '@/components/Planos'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
@@ -16,7 +16,7 @@ export default function Home() {
       <EraExecucao />
       <AILogos />
       <Economia />
-      <Posicionamento />
+      <CloudComputerAgent />
       <Planos />
       <CTA />
       <Footer />

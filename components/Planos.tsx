@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Zap, Users, Database, HeadphonesIcon, Shield, Infinity, Clock, Check, TrendingUp, HardDrive, FileText, Image, LucideIcon, Bot, Globe, Gauge, Wrench, BrainCircuit, FolderKanban } from 'lucide-react'
+import { Zap, Users, Database, HeadphonesIcon, Shield, Infinity, Clock, Check, TrendingUp, HardDrive, FileText, Image, LucideIcon, Bot, Globe, Gauge, Wrench, BrainCircuit, FolderKanban, Monitor } from 'lucide-react'
 
 interface Feature {
   icon: LucideIcon
@@ -39,6 +39,7 @@ const planos: Plano[] = [
       { icon: FileText, text: 'Geração de Arquivos Físicos', description: 'Não copie texto. A IA gera planilhas, PDFs e propostas e te entrega o download.', included: true },
       { icon: Image, text: 'Estúdio de Design Mágico', description: 'Posts e carrosséis profissionais montados em segundos com base em texto.', included: true },
       { icon: HardDrive, text: 'Arcco Drive Inclusivo', description: 'Seu cofre digital privado para salvar absolutamente tudo que for gerado.', included: true },
+      { icon: Monitor, text: 'Cloud Computer Agent', description: 'Um computador virtual na nuvem que navega, clica, preenche e executa tarefas reais pelo seu negócio.', included: true },
     ],
     popular: true,
     badge: 'Mais Escolhido',
