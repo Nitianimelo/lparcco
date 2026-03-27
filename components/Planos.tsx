@@ -21,6 +21,7 @@ interface Plano {
   features: Feature[]
   popular: boolean
   cta: string
+  ctaLink: string
   badge?: string
 }
 
@@ -44,6 +45,7 @@ const planos: Plano[] = [
     popular: true,
     badge: 'Mais Escolhido',
     cta: 'Testar grátis agora.',
+    ctaLink: 'http://app.arccoai.com/',
   },
 
   {
@@ -56,6 +58,7 @@ const planos: Plano[] = [
     features: [],
     popular: false,
     cta: 'Falar com Vendas',
+    ctaLink: '#contato',
   },
 ]
 
@@ -155,11 +158,14 @@ export default function Planos() {
                   </ul>
                 </div>
 
-                <motion.button
+                <motion.a
+                  href={plano.ctaLink}
+                  target={plano.ctaLink.startsWith('http') ? '_blank' : undefined}
+                  rel={plano.ctaLink.startsWith('http') ? 'noopener noreferrer' : undefined}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className={`
-                    w-full py-4 rounded-xl font-bold transition-all duration-300
+                    w-full py-4 rounded-xl font-bold transition-all duration-300 text-center block
                     ${plano.popular
                       ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25'
                       : 'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border'
@@ -167,7 +173,7 @@ export default function Planos() {
                   `}
                 >
                   {plano.cta}
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           ))}

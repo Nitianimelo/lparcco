@@ -41,14 +41,17 @@ export default function Header() {
             </a>
           </nav>
 
-          <motion.button
+          <motion.a
+            href="http://app.arccoai.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="hidden md:flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
           >
             <span>Começar Agora</span>
             <ArrowRight className="w-4 h-4" />
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </motion.header>

@@ -72,7 +72,10 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="flex flex-col sm:flex-row items-center lg:items-start w-full sm:w-auto justify-center lg:justify-start gap-4"
             >
-              <motion.button
+              <motion.a
+                href="http://app.arccoai.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full sm:w-auto group relative px-8 py-4 bg-primary text-white rounded-xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
@@ -81,15 +84,16 @@ export default function Hero() {
                 <span className="relative flex items-center justify-center gap-2">
                   Começar Gratuitamente <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-              </motion.button>
+              </motion.a>
 
-              <motion.button
+              <motion.a
+                href="#contato"
                 whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-foreground rounded-xl font-semibold text-lg transition-all duration-300 hover:border-white/20"
               >
                 Ver Demonstração
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
 
