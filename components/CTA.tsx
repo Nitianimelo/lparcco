@@ -38,22 +38,26 @@ export default function CTA() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <motion.button
+            <motion.a
+              href="http://app.arccoai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg hover:bg-primary/90 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-primary/20"
             >
               <span>Começar Gratuitamente</span>
               <ArrowRight className="w-5 h-5" />
-            </motion.button>
+            </motion.a>
 
-            <motion.button
+            <motion.a
+              href="#contato"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-secondary/80 text-secondary-foreground rounded-xl font-semibold text-lg hover:bg-secondary transition-all duration-300 border border-border"
             >
               Falar com Especialista
-            </motion.button>
+            </motion.a>
           </motion.div>
 
           {/* Trust Badges */}
