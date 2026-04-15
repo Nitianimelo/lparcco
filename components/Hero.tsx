@@ -83,8 +83,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex items-center lg:items-start justify-center lg:justify-start w-full sm:w-auto"
+              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 w-full sm:w-auto"
             >
+              {/* Botão primário */}
               <motion.a
                 href="http://app.arccoai.com/"
                 target="_blank"
@@ -99,6 +100,19 @@ export default function Hero() {
                   Começar Gratuitamente
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </span>
+              </motion.a>
+
+              {/* Botão secundário */}
+              <motion.a
+                href="http://app.arccoai.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="group w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-lg text-gray-300 border border-white/10 hover:border-white/25 hover:text-white hover:bg-white/5 transition-all duration-300"
+              >
+                Começar gratuitamente
               </motion.a>
             </motion.div>
           </motion.div>
