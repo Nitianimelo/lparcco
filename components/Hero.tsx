@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import CircuitBackground from './CircuitBackground'
+import { PointerHighlight } from '@/components/ui/pointer-highlight'
 
 export default function Hero() {
   const { scrollY } = useScroll()
@@ -53,7 +54,19 @@ export default function Hero() {
             >
               A tecnologia das grandes empresas{' '}
               <span className="bg-gradient-to-r from-blue-400 via-primary to-purple-400 bg-clip-text text-transparent animate-gradient-x">
-                agora no seu negócio.
+                agora no{' '}
+              </span>
+              <PointerHighlight
+                containerClassName="inline-block"
+                rectangleClassName="border-purple-400/60"
+                pointerClassName="text-purple-400"
+              >
+                <span className="bg-gradient-to-r from-blue-400 via-primary to-purple-400 bg-clip-text text-transparent animate-gradient-x">
+                  seu negócio
+                </span>
+              </PointerHighlight>
+              <span className="bg-gradient-to-r from-blue-400 via-primary to-purple-400 bg-clip-text text-transparent animate-gradient-x">
+                .
               </span>
             </motion.h1>
 
