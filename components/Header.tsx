@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 
 export default function Header() {
   return (
@@ -12,11 +11,9 @@ export default function Header() {
       className="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-lg border-b border-white/5"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center"
-          >
+        <div className="flex items-center h-16">
+          {/* Logo */}
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center flex-shrink-0">
             <div className="relative h-12 w-48 flex items-center justify-start">
               <img
                 src="https://qscezcbpwvnkqoevulbw.supabase.co/storage/v1/object/public/Chipro%20calculadora/arcco%20(1).png"
@@ -26,7 +23,8 @@ export default function Header() {
             </div>
           </motion.div>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          {/* Nav — empurrado para a direita */}
+          <nav className="hidden md:flex items-center gap-8 ml-auto mr-8">
             <a href="#ias" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">
               IAs
             </a>
@@ -41,17 +39,28 @@ export default function Header() {
             </a>
           </nav>
 
-          <motion.a
-            href="http://app.arccoai.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden md:flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
-          >
-            <span>Começar Agora</span>
-            <ArrowRight className="w-4 h-4" />
-          </motion.a>
+          {/* Ações */}
+          <div className="hidden md:flex items-center gap-3">
+            <motion.a
+              href="http://app.arccoai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-3 py-2"
+            >
+              Login
+            </motion.a>
+
+            <motion.a
+              href="#planos"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 transition-colors px-4 py-2 rounded-lg"
+            >
+              Conhecer nossa plataforma
+            </motion.a>
+          </div>
         </div>
       </div>
     </motion.header>
