@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const navLinks = [
-  { label: 'Planos', href: '#planos' },
+  { label: 'Planos', href: '/#planos' },
   { label: 'Blog', href: '/blog' },
 ]
 
@@ -79,7 +79,7 @@ export default function Header() {
               </motion.a>
 
               <motion.a
-                href="#planos"
+                href="/#planos"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 transition-colors px-4 py-2 rounded-lg cursor-pointer"
@@ -161,7 +161,7 @@ export default function Header() {
                     Login
                   </a>
                   <a
-                    href="#planos"
+                    href="/#planos"
                     onClick={closeMenu}
                     className="text-center py-3 rounded-xl bg-white text-gray-900 hover:bg-gray-100 text-sm font-semibold transition-all duration-200 cursor-pointer"
                   >
