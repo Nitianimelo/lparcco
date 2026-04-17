@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: 'Arcco — Plataforma de IA para Empresas Brasileiras | Automação com Inteligência Artificial',
-    template: '%s | Arcco IA',
+    default: 'Arcco — IA para Empresas Brasileiras | Automatize, Crie e Escale',
+    template: '%s | Arcco',
   },
 
   description:
-    'Arcco é a plataforma de IA plug-and-play para PMEs brasileiras. Crie conteúdo, automatize redes sociais, gere textos e imagens para marketing, e delegue tarefas completas para agentes de inteligência artificial. A partir de R$ 99,90/mês.',
+    'Arcco é a plataforma de IA para PMEs brasileiras. Analise PDFs, gere slides, imagens e posts, automatize tarefas com agentes autônomos. Plug & play, sem código. A partir de R$ 99,90/mês.',
 
   keywords: [
     // Core product + modelo proprietário
@@ -111,9 +111,9 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: '/icon.png?v=4',
-    shortcut: '/icon.png?v=4',
-    apple: '/icon.png?v=4',
+    icon: [{ url: '/icon.png', sizes: '32x32' }, { url: '/icon.png', sizes: '192x192' }],
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
 
   category: 'technology',

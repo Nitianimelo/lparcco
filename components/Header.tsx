@@ -5,11 +5,8 @@ import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const navLinks = [
-  { label: 'IAs', href: '#ias' },
-  { label: 'Soluções', href: '#solucoes' },
   { label: 'Planos', href: '#planos' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Contato', href: '#contato' },
 ]
 
 export default function Header() {
