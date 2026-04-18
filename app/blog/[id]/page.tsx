@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import { Clock, ArrowLeft, ArrowRight } from 'lucide-react'
 import { ReadingProgress } from '@/components/ui/reading-progress'
 import { AudioPlayer } from '@/components/ui/audio-player'
+import { ShareButton } from '@/components/ShareButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -86,9 +87,12 @@ export default async function ArticlePage({ params }: { params: { id: string } }
             {/* Meta */}
             <div className="flex items-center gap-4 border-y border-white/6 py-4 mb-12">
               <p className="text-xs text-gray-600 tracking-widest uppercase">{post.date}</p>
-              <div className="ml-auto flex items-center gap-1.5 text-xs text-gray-600 tracking-wide">
-                <Clock className="w-3.5 h-3.5" />
-                {post.readTime}
+              <div className="ml-auto flex items-center gap-3">
+                <ShareButton postId={post.id} title={post.title} />
+                <div className="flex items-center gap-1.5 text-xs text-gray-600 tracking-wide">
+                  <Clock className="w-3.5 h-3.5" />
+                  {post.readTime}
+                </div>
               </div>
             </div>
 
