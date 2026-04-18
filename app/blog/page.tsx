@@ -1,17 +1,10 @@
 import type { Metadata } from 'next'
-import fs from 'fs'
-import path from 'path'
+import { readPosts } from '@/lib/posts-store'
 import { GlassBlogCard } from '@/components/ui/glass-blog-card-shadcnui'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const dynamic = 'force-dynamic'
-
-function getAdminPosts() {
-  const file = path.join(process.cwd(), 'data', 'posts.json')
-  if (!fs.existsSync(file)) return []
-  return JSON.parse(fs.readFileSync(file, 'utf-8'))
-}
 
 export const metadata: Metadata = {
   title: 'Blog — Inteligência Artificial para Negócios',
@@ -88,12 +81,14 @@ const posts = [
   },
 ]
 
-export default function BlogPage() {
-  const adminPosts = getAdminPosts()
+type AdminPost = { id: string; title: string; subtitle?: string; author: string; coverImage: string; tags: string[]; date: string; readTime: string }
+
+export default async function BlogPage() {
+  const adminPosts = (await readPosts()) as AdminPost[]
 
   // Merge: admin posts first, then hardcoded as fallback if no admin posts
   const allPosts = adminPosts.length > 0
-    ? adminPosts.map((p: { id: string; title: string; subtitle?: string; author: string; coverImage: string; tags: string[]; date: string; readTime: string }) => ({
+    ? adminPosts.map((p) => ({
         title: p.title,
         excerpt: p.subtitle || '',
         image: p.coverImage,

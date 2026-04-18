@@ -1,29 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { readPosts, writePosts } from '@/lib/posts-store'
+import { getStore } from '@netlify/blobs'
 
-const POSTS_FILE = path.join(process.cwd(), 'data', 'posts.json')
-
-function readPosts() {
-  if (!fs.existsSync(POSTS_FILE)) {
-    fs.mkdirSync(path.dirname(POSTS_FILE), { recursive: true })
-    fs.writeFileSync(POSTS_FILE, '[]')
-  }
-  return JSON.parse(fs.readFileSync(POSTS_FILE, 'utf-8'))
-}
-
-function writePosts(posts: unknown[]) {
-  fs.writeFileSync(POSTS_FILE, JSON.stringify(posts, null, 2))
-}
+type Post = Record<string, unknown> & { id: string }
 
 export async function GET() {
-  const posts = readPosts()
+  const posts = await readPosts()
   return NextResponse.json(posts)
 }
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
-  const posts = readPosts()
+  const posts = (await readPosts()) as Post[]
 
   const now = new Date()
   const dateLabel = now.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
@@ -43,29 +31,32 @@ export async function POST(req: NextRequest) {
   }
 
   posts.unshift(newPost)
-  writePosts(posts)
+  await writePosts(posts)
   return NextResponse.json(newPost, { status: 201 })
 }
 
 export async function DELETE(req: NextRequest) {
   const { id } = await req.json()
-  const posts = readPosts()
-  const filtered = posts.filter((p: { id: string }) => p.id !== id)
-  writePosts(filtered)
+  const posts = (await readPosts()) as Post[]
+  const filtered = posts.filter(p => p.id !== id)
+  await writePosts(filtered)
 
-  // Remove audio file if exists
-  const audioFile = path.join(process.cwd(), 'public', 'audio', `${id}.mp3`)
-  if (fs.existsSync(audioFile)) fs.unlinkSync(audioFile)
+  try {
+    const audioStore = getStore('audio')
+    await audioStore.delete(id)
+  } catch {
+    // audio may not exist or blobs unavailable — ignore
+  }
 
   return NextResponse.json({ success: true })
 }
 
 export async function PUT(req: NextRequest) {
   const body = await req.json()
-  const posts = readPosts()
-  const idx = posts.findIndex((p: { id: string }) => p.id === body.id)
+  const posts = (await readPosts()) as Post[]
+  const idx = posts.findIndex(p => p.id === body.id)
   if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 })
   posts[idx] = { ...posts[idx], ...body }
-  writePosts(posts)
+  await writePosts(posts)
   return NextResponse.json(posts[idx])
 }

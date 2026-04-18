@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getStore } from '@netlify/blobs'
 import fs from 'fs'
 import path from 'path'
 
@@ -11,12 +12,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Arquivo ou ID ausente' }, { status: 400 })
   }
 
-  const audioDir = path.join(process.cwd(), 'public', 'audio')
-  fs.mkdirSync(audioDir, { recursive: true })
+  const arrayBuffer = await file.arrayBuffer()
 
-  const buffer = Buffer.from(await file.arrayBuffer())
-  const filename = `${id}.mp3`
-  fs.writeFileSync(path.join(audioDir, filename), buffer)
-
-  return NextResponse.json({ audioUrl: `/audio/${filename}` })
+  try {
+    const store = getStore('audio')
+    await store.set(id, arrayBuffer, { metadata: { contentType: 'audio/mpeg' } })
+    return NextResponse.json({ audioUrl: `/api/audio/${id}` })
+  } catch {
+    // Local dev fallback: write to public/audio/
+    const audioDir = path.join(process.cwd(), 'public', 'audio')
+    fs.mkdirSync(audioDir, { recursive: true })
+    fs.writeFileSync(path.join(audioDir, `${id}.mp3`), Buffer.from(arrayBuffer))
+    return NextResponse.json({ audioUrl: `/audio/${id}.mp3` })
+  }
 }

@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
-import fs from 'fs'
-import path from 'path'
+import { readPosts } from '@/lib/posts-store'
 import { Lora } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -35,14 +34,8 @@ interface Post {
   audioUrl?: string | null
 }
 
-function getPosts(): Post[] {
-  const file = path.join(process.cwd(), 'data', 'posts.json')
-  if (!fs.existsSync(file)) return []
-  return JSON.parse(fs.readFileSync(file, 'utf-8'))
-}
-
-export default function ArticlePage({ params }: { params: { id: string } }) {
-  const posts = getPosts()
+export default async function ArticlePage({ params }: { params: { id: string } }) {
+  const posts = (await readPosts()) as Post[]
   const post = posts.find(p => p.id === params.id)
   if (!post) notFound()
 
