@@ -76,7 +76,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-xl sm:text-2xl text-muted-foreground mb-10 max-w-xl leading-relaxed"
             >
-              Democratizamos a implementação de IA. Plug &amp; Play para transformar sua operação de ponta a ponta.
+              Tudo que você precisa de IA em um só lugar.
             </motion.p>
 
             <motion.div
