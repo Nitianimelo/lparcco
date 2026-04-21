@@ -3,140 +3,64 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import {
-  Check, FileText, Image, Monitor, FolderKanban, Wrench,
-  BrainCircuit, Globe, Paintbrush, TableProperties, Stamp,
-  Cpu, Rocket, Plug, HeadphonesIcon, LucideIcon,
+  Check, Monitor, BrainCircuit, Paintbrush, Stamp,
+  Files, Database, TrendingDown, Zap, ShoppingBag, LucideIcon,
 } from 'lucide-react'
 
 interface Feature {
   icon: LucideIcon
   text: string
-  description?: string
-}
-
-interface Plano {
-  name: string
-  tagline: string
   description: string
-  priceMonthly: string
-  priceAnnual: string
-  annualLabel?: string
-  features: Feature[]
-  extras?: Feature[]
-  popular: boolean
-  badge?: string
-  cta: string
-  ctaLink: string
 }
 
 const starterFeatures: Feature[] = [
   {
+    icon: Monitor,
+    text: 'Agent Computer',
+    description: 'Agente autônomo que navega, clica e executa tarefas reais na web — superior ao Manus.',
+  },
+  {
+    icon: TrendingDown,
+    text: 'Economia de custos',
+    description: 'IA que substitui horas de trabalho manual e reduz custos operacionais do negócio.',
+  },
+  {
     icon: BrainCircuit,
-    text: 'Arcco Tera — Modelo Proprietário',
-    description: 'Nosso modelo treinado para o mercado brasileiro. Entende jargão local, APIs nacionais e contexto de negócio.',
+    text: 'Mensagens ilimitadas — Arcco Tera',
+    description: 'Modelo proprietário treinado para o mercado brasileiro, sem limite de uso.',
+  },
+  {
+    icon: Database,
+    text: 'Memória máxima RAG',
+    description: 'A IA aprende como sua empresa funciona e lembra para sempre — contexto ilimitado.',
   },
   {
     icon: Paintbrush,
     text: 'Arcco Design',
-    description: 'Crie apresentações, posts, stories e criativos com IA — exporte em PDF, PPTX ou PNG.',
-  },
-  {
-    icon: TableProperties,
-    text: 'Geração e edição de planilhas com IA',
-    description: 'Peça um Excel consolidado, CSV estruturado ou análise de dados e receba o arquivo pronto para download.',
+    description: 'Crie apresentações, posts, stories e criativos com IA. Exporte em PDF, PPTX ou PNG.',
   },
   {
     icon: Stamp,
-    text: 'Documentos personalizados com a marca',
-    description: 'Contratos, propostas, recibos e relatórios com logo e identidade visual da sua empresa.',
+    text: 'Documentos personalizados',
+    description: 'Contratos, propostas e recibos com logo e identidade visual da sua empresa.',
   },
   {
-    icon: Globe,
-    text: 'Mais de 20 modelos de IA do mercado',
-    description: 'Acesse GPT-4o, Claude 3.5, Gemini, Mistral e outros — tudo em um só lugar.',
-  },
-  {
-    icon: FileText,
-    text: 'Análise de até 50 PDFs simultâneos',
-    description: 'Envie contratos, relatórios e editais. O Arcco lê tudo, cruza as informações e entrega o resumo pronto.',
-  },
-  {
-    icon: Image,
-    text: 'Geração de Imagens e Slides',
-    description: 'Crie apresentações profissionais e imagens para marketing. Baixe o arquivo final.',
-  },
-  {
-    icon: Monitor,
-    text: 'Cloud Computer Agent',
-    description: 'Um computador virtual na nuvem que navega, clica, preenche formulários e executa tarefas reais.',
-  },
-  {
-    icon: FolderKanban,
-    text: 'Projetos e Memória Infinita (RAG)',
-    description: 'Espaços de trabalho segmentados. A IA lembra como sua empresa funciona para sempre.',
-  },
-  {
-    icon: Wrench,
-    text: 'Ferramentas do Dia a Dia',
-    description: 'Hub de atalhos e utilitários rápidos para resolver tarefas recorrentes em um clique.',
+    icon: Files,
+    text: 'Análise massiva de documentos',
+    description: 'Envie até 50 PDFs simultâneos — o Arcco lê, cruza e entrega o resumo pronto.',
   },
 ]
 
 const ultraExtras: Feature[] = [
   {
-    icon: Paintbrush,
-    text: '6× mais uso no Arcco Design',
-    description: 'Cota ampliada para geração de criativos, apresentações e materiais visuais.',
+    icon: ShoppingBag,
+    text: 'Loja de ferramentas exclusivas para empresas',
+    description: 'Acesso a ferramentas avançadas desenvolvidas para a operação de PMEs brasileiras.',
   },
   {
-    icon: Cpu,
-    text: 'Arcco Agent com modelos premium',
-    description: 'GPT-4o, Claude 3.7 Sonnet, Gemini 2.0 Flash e outros top-tier sem limitações.',
-  },
-  {
-    icon: Plug,
-    text: 'Integrações nativas para PMEs brasileiras',
-    description: 'Nota fiscal, ERP, CRM, WhatsApp Business e sistemas legados nacionais.',
-  },
-  {
-    icon: Rocket,
-    text: 'Ferramentas exclusivas para PMEs',
-    description: 'Automações, templates e fluxos pensados para a operação do negócio brasileiro.',
-  },
-  {
-    icon: HeadphonesIcon,
-    text: 'Suporte prioritário',
-    description: 'Atendimento com tempo de resposta garantido e gerente de conta dedicado.',
-  },
-]
-
-const planos: Plano[] = [
-  {
-    name: 'Starter',
-    tagline: 'Para quem está começando',
-    description: 'Um time de especialistas em IA trabalhando 24/7 pelo seu negócio.',
-    priceMonthly: '129',
-    priceAnnual: '99,90',
-    annualLabel: 'Economize R$348/ano',
-    features: starterFeatures,
-    popular: true,
-    badge: 'Mais Escolhido',
-    cta: 'Testar grátis agora',
-    ctaLink: 'http://app.arccoai.com/',
-  },
-  {
-    name: 'Ultra',
-    tagline: 'Para PMEs que querem escalar',
-    description: 'Tudo do Starter mais capacidade ampliada, modelos premium e integrações nativas brasileiras.',
-    priceMonthly: '316',
-    priceAnnual: '245',
-    annualLabel: 'Economize R$852/ano',
-    features: starterFeatures,
-    extras: ultraExtras,
-    popular: false,
-    badge: 'Completo',
-    cta: 'Começar agora',
-    ctaLink: 'http://app.arccoai.com/',
+    icon: Zap,
+    text: '6× mais uso no Agent Computer e Arcco Design',
+    description: 'Cota ampliada para automações e criação de materiais visuais em escala.',
   },
 ]
 
@@ -144,6 +68,37 @@ export default function Planos() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [isAnnual, setIsAnnual] = useState(true)
+
+  const planos = [
+    {
+      name: 'Starter',
+      tagline: 'Para quem está começando',
+      description: 'Um time de especialistas em IA trabalhando 24/7 pelo seu negócio.',
+      priceMonthly: '129',
+      priceAnnual: '99,90',
+      annualSaving: 'Economize R$348/ano',
+      features: starterFeatures,
+      extras: null as Feature[] | null,
+      popular: true,
+      badge: 'Mais Escolhido',
+      cta: 'Testar grátis agora',
+      ctaLink: 'http://app.arccoai.com/',
+    },
+    {
+      name: 'Ultra',
+      tagline: 'Para PMEs que querem escalar',
+      description: 'Tudo do Starter com capacidade ampliada e ferramentas exclusivas para empresas.',
+      priceMonthly: '316',
+      priceAnnual: '245',
+      annualSaving: 'Economize R$852/ano',
+      features: starterFeatures,
+      extras: ultraExtras,
+      popular: false,
+      badge: 'Completo',
+      cta: 'Começar agora',
+      ctaLink: 'http://app.arccoai.com/',
+    },
+  ]
 
   return (
     <section id="planos" className="relative py-24 overflow-hidden bg-background">
@@ -173,8 +128,8 @@ export default function Planos() {
             Do primeiro acesso à operação completa com IA. Evolua conforme o seu crescimento.
           </p>
 
-          {/* Toggle mensal / anual */}
-          <div className="inline-flex items-center gap-3 bg-card border border-border rounded-full p-1">
+          {/* Toggle */}
+          <div className="inline-flex items-center gap-1 bg-card border border-border rounded-full p-1">
             <button
               onClick={() => setIsAnnual(false)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
@@ -214,7 +169,7 @@ export default function Planos() {
               className={`relative group ${plano.popular ? 'z-10 md:-mt-4 md:mb-4' : ''}`}
             >
               {plano.badge && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
                   <div className={`px-4 py-1 rounded-full text-white text-sm font-semibold shadow-lg ${
                     plano.popular
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 shadow-primary/30'
@@ -233,17 +188,16 @@ export default function Planos() {
                 }
               `}>
                 {/* Plan header */}
-                <div className="mb-8">
+                <div className="mb-6">
                   <p className="text-xs font-medium text-primary uppercase tracking-widest mb-1">{plano.tagline}</p>
                   <h3 className="text-2xl font-bold text-foreground mb-2">{plano.name}</h3>
-                  <p className="text-muted-foreground text-sm mb-6 min-h-[48px]">{plano.description}</p>
+                  <p className="text-muted-foreground text-sm mb-5">{plano.description}</p>
 
-                  {/* Price */}
                   <motion.div
                     key={isAnnual ? 'annual' : 'monthly'}
-                    initial={{ opacity: 0, y: -8 }}
+                    initial={{ opacity: 0, y: -6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.25 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="flex items-baseline gap-1">
                       <span className="text-5xl font-bold text-foreground">
@@ -251,10 +205,9 @@ export default function Planos() {
                       </span>
                       <span className="text-muted-foreground">/mês</span>
                     </div>
-                    {isAnnual && plano.annualLabel && (
-                      <p className="text-xs text-green-400 mt-1 font-medium">{plano.annualLabel}</p>
-                    )}
-                    {!isAnnual && (
+                    {isAnnual ? (
+                      <p className="text-xs text-green-400 mt-1 font-medium">{plano.annualSaving}</p>
+                    ) : (
                       <p className="text-xs text-muted-foreground mt-1">
                         ou R$ {plano.priceAnnual}/mês no plano anual
                       </p>
@@ -262,47 +215,42 @@ export default function Planos() {
                   </motion.div>
                 </div>
 
-                {/* Features */}
-                <div className="flex-1">
-                  {/* Ultra: "Tudo do Starter +" */}
-                  {plano.extras && (
-                    <div className="mb-4 pb-4 border-b border-border/50">
-                      <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">
-                        Diferenciais Ultra
-                      </p>
-                      <ul className="space-y-3">
-                        {plano.extras.map((feature, idx) => (
-                          <li key={idx} className="flex items-start space-x-3">
-                            <div className="mt-0.5 rounded-full p-1 shrink-0 bg-purple-500/20 text-purple-400">
-                              <Check className="w-3 h-3" />
-                            </div>
-                            <div>
-                              <span className="text-sm font-semibold text-foreground">{feature.text}</span>
-                              {feature.description && (
-                                <p className="text-xs text-muted-foreground mt-0.5">{feature.description}</p>
-                              )}
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                {/* Ultra diferenciais */}
+                {plano.extras && (
+                  <div className="mb-5 pb-5 border-b border-border/50">
+                    <p className="text-[11px] font-semibold text-purple-400 uppercase tracking-widest mb-3">
+                      Exclusivo Ultra
+                    </p>
+                    <ul className="space-y-3">
+                      {plano.extras.map((f, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <div className="mt-0.5 rounded-full p-1 shrink-0 bg-purple-500/20 text-purple-400">
+                            <Check className="w-3 h-3" />
+                          </div>
+                          <div>
+                            <span className="text-sm font-semibold text-foreground">{f.text}</span>
+                            <p className="text-xs text-muted-foreground mt-0.5">{f.description}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
-                    {plano.extras ? 'Inclui tudo do Starter' : 'Incluído no plano'}
-                  </p>
+                {/* Starter features */}
+                <div className="flex-1">
+                  {plano.extras && (
+                    <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+                      Inclui tudo do Starter
+                    </p>
+                  )}
                   <ul className="space-y-3 mb-8">
-                    {plano.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
+                    {plano.features.map((f, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
                         <div className="mt-0.5 rounded-full p-1 shrink-0 bg-primary/20 text-primary">
                           <Check className="w-3 h-3" />
                         </div>
-                        <div>
-                          <span className="text-sm font-medium text-foreground">{feature.text}</span>
-                          {feature.description && (
-                            <p className="text-xs text-muted-foreground mt-0.5">{feature.description}</p>
-                          )}
-                        </div>
+                        <span className="text-sm text-foreground">{f.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -329,7 +277,6 @@ export default function Planos() {
           ))}
         </div>
 
-        {/* Footer note */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
