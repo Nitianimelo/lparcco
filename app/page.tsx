@@ -5,6 +5,7 @@ import EraExecucao from '@/components/EraExecucao'
 import Economia from '@/components/Economia'
 import CloudComputerAgent from '@/components/CloudComputerAgent'
 import Depoimentos from '@/components/Depoimentos'
+import ArccoDesignShowcase from '@/components/ArccoDesignShowcase'
 import Planos from '@/components/Planos'
 import FAQ from '@/components/FAQ'
 import CTA from '@/components/CTA'
@@ -161,6 +162,7 @@ export default function Home() {
       <Economia />
       <CloudComputerAgent />
       <Depoimentos />
+      <ArccoDesignShowcase />
       <Planos />
       <FAQ />
       <CTA />
